@@ -1,40 +1,42 @@
-## Getting Started
+## Smart Contract Management Overview
 
-Create a project using this example:
+### Purpose:
+The ErrorHandlings contract is designed to manage a numeric value with controlled modification, ensuring security and integrity through various error-handling mechanisms. It employs the require, assert, and revert statements to enforce specific conditions and prevent unintended behavior during state changes.
 
-```bash
-npx thirdweb create --template next-typescript-starter
-```
+## Functions
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
 
-On `pages/_app.tsx`, you'll find our `ThirdwebProvider` wrapping your app, this is necessary for our [hooks](https://portal.thirdweb.com/react) and
-[UI Components](https://portal.thirdweb.com/ui-components) to work.
+setValue(uint256 _newValue) external onlyOwner: Allows the owner to set a new value with specified conditions:
 
-## Environment Variables
+Uses require to check if the new value is greater than zero.
+Uses assert to ensure there are no internal errors during the state change.
+Utilizes revert to explicitly revert the transaction if the new value exceeds 100.
+increaseValue(uint256 _increaseAmount) external onlyOwner: Enables the owner to increase the value:
 
-To run this project, you will need to add environment variables. Check the `.env.example` file for all the environment variables required and add it to `.env.local` file or set them up on your hosting provider.
+Employs require to ensure the increase amount is greater than zero.
+Uses assert to verify there are no internal errors during the state change.
+Applies revert to explicitly revert the transaction if the resulting value would exceed 100.
+decreaseValue(uint256 _decreaseAmount) external onlyOwner: Permits the owner to decrease the value:
 
-## Deploy to IPFS
+Utilizes require to check if the decrease amount is greater than zero.
+Implements assert to validate there are no internal errors during the state change.
+Employs revert to explicitly revert the transaction if the resulting value would be less than zero.
 
-Deploy a copy of your application to IPFS using the following command:
+### Deployment
+The contract was deployed and verified on mumbai testnet, and the abi used accordingly.
 
-```bash
-yarn deploy
-```
+### Contract Address
+0xa6beCdC508FF233c51885FFD58fE3A1a3b6d6Da9
 
-## Learn More
+### UI
 
-To learn more about thirdweb and Next.js, take a look at the following resources:
+It implements a UI with buttons to set, increase and decrease value
 
-- [thirdweb React Documentation](https://docs.thirdweb.com/react) - learn about our React SDK.
-- [thirdweb TypeScript Documentation](https://docs.thirdweb.com/typescript) - learn about our JavaScript/TypeScript SDK.
-- [thirdweb Portal](https://docs.thirdweb.com) - check our guides and development resources.
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Templates](https://thirdweb.com/templates)
+## Authors
 
-You can check out [the thirdweb GitHub organization](https://github.com/thirdweb-dev) - your feedback and contributions are welcome!
+Esther Breath
+[@metacraftersio](https://twitter.com/EstherBreath10)
 
-## Join our Discord!
+## License
 
-For any questions, suggestions, join our discord at [https://discord.gg/thirdweb](https://discord.gg/thirdweb).
+This project is licensed under the MIT License
